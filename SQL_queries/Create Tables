@@ -1,6 +1,6 @@
-CREATE DATABASE webbuds;                                                                    Namm
+CREATE DATABASE webbuds;                                                                   
 
 USE webbuds;                                                                                 Katherine Namm Lillian Nidhi   
 
 CREATE TABLE accounts(userID int AUTO_INCREMENT NOT NULL, email VARCHAR(320) NOT NULL UNIQUE, password VARCHAR(20) NOT NULL, 
-PRIMARY KEY(userID));                                                                        Namm
+PRIMARY KEY(userID));                                                                        
