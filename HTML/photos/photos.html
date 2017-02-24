@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <style>
+  body { padding-bottom: 60px; background:WHITE;}
+  .thumbnail
+  {
+      margin-bottom: 20px;
+      padding: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+  }
+
+  .item.list-group-item
+  {
+      float: none;
+      width: 100%;
+      background-color: #fff;
+      margin-bottom: 10px;
+  }
+  .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+  {
+      background: #428bca;
+  }
+
+  /*.item.list-group-item .list-group-image
+  {
+    margin-right: 10px;
+
+  }*/
+  .item.list-group-item .thumbnail
+  {
+    margin-bottom: 10px;
+  }
+  .item.list-group-item .caption
+  {
+    padding: 9px 9px 0px 9px;
+  }
+  .item.list-group-item:nth-of-type(odd)
+  {
+    background: #eeeeee;
+  }
+
+  .item.list-group-item:before, .item.list-group-item:after
+  {
+    display: table;
+    content: " ";
+  }
+
+  .item.list-group-item img
+  {
+    float: left;
+  }
+  .item.list-group-item:after
+  {
+    clear: both;
+  }
+  .list-group-item-text
+  {
+    margin: 0 0 11px;
+  }
+  .btn-home{
+    background:#FFC1C1;
+    color:#FFFFFF;
+  }
+  .btn-create {
+    background:#FFC1C1;
+    color:#FFFFFF;
+    font-weight:bold;
+}
+
+  
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+<h2>Albums
+<a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong>  Back to home page</strong></a>
+<div style="float:right;padding-right:40px;">
+<button type="button" class="btn btn-create" data-toggle="modal" data-target="#AlbumModal"><span class="glyphicon glyphicon-plus"></span>  Create a album</a></button>
+</div>
+</h2>
+<div class="container">
+    <div id="albums" class="list-group">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+            <a href="../photos/album.html">
+                <img class="group list-group-image" src="assets/Canyon.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
+            </a>
+            <div class="caption">
+                <a href="../photos/album.html" style="color:BLACK">
+                  <h4 class="group inner list-group-item-heading">
+                    <strong>Great Canyon</strong><span class="badge" style="float:right">2 photos</span></h4>
+                </a>
+                </div>
+            </div>
+        </div>
+        <div id="albums" class="list-group">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+               <a href="../photos/album.html"> 
+                <img class="group list-group-image" src="assets/Gracier.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
+               </a>
+              <div class="caption">
+                    <a href="../photos/album.html" style="color:BLACK">
+                    <h4 class="group inner list-group-item-heading">
+                        <strong>Gracier</strong><span class="badge" style="float:right">1 photo</span></h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+  </div>
+  <div id="albums" class="list-group">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <a href="../photos/album.html">
+                  <img class="group list-group-image" src="assets/Lavander.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
+                </a>
+                <div class="caption">
+                    <a href="../photos/album.html" style="color:BLACK">
+                    <h4 class="group inner list-group-item-heading">
+                        <strong>Flowers</strong><span class="badge" style="float:right">1 photo</span></h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+  <div id="albums" class="list-group">
+    <div class="item  col-xs-4 col-lg-4">
+          <div class="thumbnail">
+              <a href="../photos/album.html">
+                <img class="group list-group-image" src="assets/Ocean.jpg" alt="" style="height:250px;width:400px;object-fit:cover" />
+              </a>
+              <div class="caption">
+                <a href="../photos/album.html" style="color:BLACK">
+                  <h4 class="group inner list-group-item-heading">
+                  <strong>Ocean</strong><span class="badge" style="float:right">1 photo</span></h4>
+                </a>
+              </div>
+          </div>
+    </div>
+  </div>
+   <div id="albums" class="list-group">
+    <div class="item  col-xs-4 col-lg-4">
+          <div class="thumbnail">
+              <a href="../photos/album.html">
+                <img class="group list-group-image" src="assets/Waterfall.jpg" alt="" style="height:250px;width:400px;object-fit:cover" />
+              </a>
+              <div class="caption">
+                <a href="../photos/album.html" style="color:BLACK">
+                  <h4 class="group inner list-group-item-heading">
+                  <strong>Waterfall</strong><span class="badge" style="float:right">1 photo</span></h4>
+                </a>
+              </div>
+          </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="AlbumModal" tabindex="-1" role="dialog" aria-labelledby="Create Album" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Create Album</h5>
+            </div>
+      
+        <div style="margin: 0 auto 0 auto;">
+          <div class="modal-body text-center">
+            <form id="AlbumForm" method="post" class="form-horizontal" action="submit.php">
+              <div class="form-group">
+                <label class="col-xs-3 control-label">Album Name</label>
+                <div class="col-xs-5">
+                  <input type="text" class="form-control" name="albumname"/>
+                </div>
+              </div>
+              <div class="form-group" style="padding-top:10px">
+                <label class="col-xs-3 control-label">Album Cover</label>
+                <div class="col-xs-5">
+                  <input type="file" data-iconName="glyphicon glyphicon-inbox" id="imgInput" accept=".jpg,.gif,.png" readonly>
+                  <img id='img-upload' style="height:250px;width:400px;object-fit:cover;padding-top:10px" />
+                </div>
+              </div>
+              <div class="form-group" style="padding-top:10px">
+                <label class="col-xs-3 control-label">Album photos</label>
+                <div class="col-xs-5">
+                  <input type="file" data-iconName="glyphicon glyphicon-inbox" id="albumInput"  accept=".jpg,.gif,.png" readonly multiple>
+                </div>
+              </div>
+              <div class="form-group" style="padding-top:10px">
+                <label class="col-xs-3 control-label">Album privacy</label>
+                <div class="col-xs-5">
+                  
+              <div class="text-right">
+                <button type="submit" class="btn btn-theme" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
+              </div>            
+            </form>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function(){
+   
+    $(document).on('change', '.btn-file :file', function() {
+    var input = $(this),
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [label]);
+  });
+
+  $('.btn-file :file').on('fileselect', function(event, label) {
+        
+    var input = $(this).parents('.input-group').find(':text'),
+        log = label;
+        
+    if( input.length ) {
+        input.val(log);
+    } else {
+        if( log ) alert(log);
+    }
+      
+    });
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+         var reader = new FileReader();
+            
+         reader.onload = function (e) {
+            $('#img-upload').attr('src', e.target.result);
+            url = e.target.result;
+         }
+            
+         reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#imgInput").change(function(){
+    readURL(this);
+  });      
+      
+});
+
+
+
+
+</script>
+</div>
+</body>
