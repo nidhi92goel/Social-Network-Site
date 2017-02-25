@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-  <style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+ <style>
   body { padding-bottom: 60px; background:WHITE;}
   .thumbnail
   {
-      margin-bottom: 20px;
-      padding: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      border-radius: 0px;
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
   }
 
   .item.list-group-item
   {
-      float: none;
-      width: 100%;
-      background-color: #fff;
-      margin-bottom: 10px;
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
   }
   .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
   {
-      background: #428bca;
+    background: #428bca;
   }
 
   /*.item.list-group-item .list-group-image
@@ -72,177 +72,226 @@
     background:#FFC1C1;
     color:#FFFFFF;
     font-weight:bold;
-}
+  }
+  .btn-theme{
+    background:#CD9CB0;
+    color:#FFFFFF;
+    border: 2px solid #ddcfe7;
 
-  
-  </style>
+  }
+  .modal-thumbnail{
+   max-height:300px;width:300px; overflow:hidden;object-fit:contain;align-content:center;
+ }
+ 
+</style>
 </head>
 <body>
-<div class="container-fluid">
-<h2><a href="../photos/photos.html" style="color:BLACK">Albums</a> > Grand Canyon
-<a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong>  Back to home page</strong></a>
-<div style="float:right;padding-right:40px;">
-<button type="button" class="btn btn-create" data-toggle="modal" data-target="#UploadModal"><span class="glyphicon glyphicon-plus"></span>  Add more photos</a></button>
-<button type="button" class="btn btn-create" data-toggle="modal" data-target="#SettingModal"><span class="glyphicon glyphicon-plus"></span>  Settings</a></button>
-</div>
-</h2>
-<div class="container">
-    <div id="photo" class="list-group">
+  <div class="container-fluid">
+    <h2><a href="../photos/photos.html" style="color:BLACK">Albums</a> > Grand Canyon
+      <a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong>  Back to home page</strong></a>
+      <div style="float:right;padding-right:40px;">
+        <button type="button" class="btn btn-create" data-toggle="modal" data-target="#UploadModal"><span class="glyphicon glyphicon-plus"></span>  Add more photos</a></button>
+        <button type="button" class="btn btn-create" data-toggle="modal" data-target="#SettingModal"><span class="glyphicon glyphicon-cog"></span>  Settings</a></button>
+      </div>
+    </h2>
+    <p style="font-size:15px;color:#c7c7c7;font-weight:bold">Created on 10-9-2016</p>
+    <p style = "font-size:15px;font-weight:bold">Description:blablablabla</p>
+    <div class="container">
+      <div id="photo" class="list-group">
         <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
+          <div class="thumbnail">
             <a data-toggle="modal" data-target="#PhotoModal">
-                <img class="group list-group-image" src="assets/Canyon.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
+              <img class="group list-group-image" src="assets/Canyon.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
             </a>
             <div class="caption">
-                <a data-toggle="modal" data-target="#PhotoModal" style="color:BLACK">
-                  <p class="group inner list-group-item-heading" style="font-size:18px">
-                    Stunning!<span class="badge" style="float:right">3 comments</span>
-                    <span class="badge" style="float:right">8 likes</span></p>
+              <a data-toggle="modal" data-target="#PhotoModal" style="color:BLACK">
+                <p class="group inner list-group-item-heading" style="font-size:18px">
+                  Stunning!<span class="badge" style="float:right">3 comments</span>
+                  <span class="badge" style="float:right">8 likes</span></p>
                 </a>
-                </div>
+              </div>
             </div>
-        </div>
-    
-        <div id="photo" class="list-group">
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
+          </div>
+          
+          <div id="photo" class="list-group">
+            <div class="item  col-xs-4 col-lg-4">
+              <div class="thumbnail">
                <a data-toggle="modal" data-target="#PhotoModal"> 
                 <img class="group list-group-image" src="assets/Canyon1.jpg" alt="" style="height:250px;width:400px;object-fit:cover"/>
-               </a>
+              </a>
               <div class="caption">
-                    <a data-toggle="modal" data-target="#PhotoModal" style="color:BLACK">
-                    <p class="group inner list-group-item-heading" style="font-size:18px">
-                        Wanna go again...<span class="badge" style="float:right">0 comments</span>
-                        <span class="badge" style="float:right">10 likes</span></h4>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div>
-  </div>
-  </div>
-  
-<div class="modal fade" id="UploadModal" tabindex="-1" role="dialog" aria-labelledby="Upload photos" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title">Add more photos</h5>
-            </div>
-      
-        <div style="margin: 0 auto 0 auto;">
-          <div class="modal-body text-center">
-            <form id="AlbumForm" method="post" class="form-horizontal" action="submit_photo.php">
-            <div class="form-group" style="padding-top:10px">
-                <label class="col-xs-3 control-label">Photos to be uploaded</label>
-                <div class="col-xs-5">
-                  <input type="file" data-iconName="glyphicon glyphicon-inbox" id="imgInput" accept=".jpg,.gif,.png" readonly multiple>
+                <a data-toggle="modal" data-target="#PhotoModal" style="color:BLACK">
+                  <p class="group inner list-group-item-heading" style="font-size:18px">
+                    Wanna go again...<span class="badge" style="float:right">0 comments</span>
+                    <span class="badge" style="float:right">10 likes</span></h4>
+                  </a>
                 </div>
               </div>
-              <div class="text-right">
-                <button type="submit" class="btn btn-theme" data-dismiss="modal">Upload</button>
-                <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
-              </div>            
-            </form>
+            </div>
           </div>
         </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="PhotoModal" tabindex="-1" role="dialog" aria-labelledby="Photo Details" aria-hidden="true">
-<div class="modal-dialog modal-lg" style="overflow-y: initial !important">
-    <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h5 class="modal-title">Photo details</h5>
       </div>
       
-        <div style="margin: 0 auto 0 auto;">
-          <div class="modal-body text-left" style="height:500px;overflow-y:auto">
-            <div class="col-xs-7 col-lg-7">
-              <img src="assets/Canyon.jpg" class="img-responsive" alt="" style="height:250px;width:400px;object-fit:cover"/>
+      <div class="modal fade" id="UploadModal" tabindex="-1" role="dialog" aria-labelledby="Upload photos" aria-hidden="true">
+        <div class="modal-dialog" >
+          <div class="modal-content" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class="modal-title">Add more photos</h5>
             </div>
-            <div class="col-xs-5 col-lg-5">
-              <p style="font-size:18px">Stunning!</p>
-              <table style="margin: 0px auto;" class="table table-hover">
-                <tbody>
-                  <tr>
-                    <td style="font-size:14px;background:#ffeaed"><span class="glyphicon glyphicon-thumbs-up" type="button"></span><strong> 8 Likes</strong></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><p><a href="../profile/profile.html" style="Color:BLACK"><img src="../profile/assets/Profile_Pikachu.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
-                    <strong><a href="../profile/profile.html" style="Color:BLACK">Pikachu</a></strong><br>I want to go too TT</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><p><a href="../profile/profile.html" style="Color:BLACK"><img src="../profile/assets/Profile-squirtle.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
-                    <strong><a href="../profile/profile.html" style="Color:BLACK">Squirtle</a></strong><br>Let me join :D</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><p><a href="../profile/profile.html" style="Color:BLACK"><img src="../profile/assets/Profile_Eevee.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
-                    <strong><a href="../profile/profile.html" style="Color:BLACK">Eevee</a></strong><br>Time for an adventure!</p>
+            
+            <div style="margin: 0 auto 0 auto;">
+              <div class="modal-body text-center" style="overflow-y:auto;max-height:500px;">
+                <form id="AlbumForm" method="post" class="form-horizontal" action="submit_photo.php">
+                  <div class="form-group">
+                    <label class="col-xs-3 control-label">Photos to be uploaded</label>
+                    <div class="col-xs-9 col-lg-9">
+                      <input type="file" data-iconName="glphicon glyphicon-inbox" id="imgInput" style="margin-bottom:10px" accept=".jpg,.gif,.png" multiple>
+                      <div id="preview"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-right" style="margin-bottom: 10px;margin-right: 10px">
+                  <button type="submit" class="btn btn-theme" data-dismiss="modal">Upload</button>
+                  <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
+                </div>            
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="SettingModal" tabindex="-1" role="dialog" aria-labelledby="Settings" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title">Settings</h5>
+          </div>
+          
+          <div style="margin: 0 auto 0 auto;">
+            <div class="modal-body text-center">
+              <form id="AlbumSetting" method="post" class="form-horizontal" action="Album_privacy.php">
+                <div class="form-group" style="padding-top:10px">
+                  <label class="col-xs-3 control-label">Privacy Settings</label>
+                  <div class="col-xs-6 col-lg-6">
+                    <select class="form-control" id="sel1">
+                      <option>Public</option>
+                      <option>Friends of friends</option>
+                      <option>Friends</option>
+                      <option>Circle 1</option>
+                      <option>Circle 2</option>
+                      <option>Circle 3</option>
+                      <option>Only me</option>
+                    </select>
+                  </div>
+                  <div class="col-xs-3 col-lg-3" style="padding-right:20px">
+                    <button type="submit" class="btn btn-theme">Save</button>
+                  </div>            
+                </div>
+                
+              </form>
+              <button class="btn btn-danger" onClick="Delete()">Delete Album</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="PhotoModal" tabindex="-1" role="dialog" aria-labelledby="Photo Details" aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="width:900px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title">Photo details</h5>
+          </div>
+          
+          <div style="margin: 0 auto 0 auto;">
+            <div class="modal-body text-left" style="max-height:500px;overflow-y:auto;">
+              <div class="col-lg-8 col-xs-8">
+                <img src="assets/Canyon.jpg" class="img-responsive" alt="" style="width:auto;max-height:500px;max-width:550px;object-fit:cover; display: block;margin-left: auto;margin-right: auto;"/> 
+              </div>
+              <div class="col-lg-4 col-xs-4 ">
+                <p style="font-size:14px;margin-bottom:0;margin-top:5px">Stunning!</p>
+                <p style="font-size:12px;color:#c7c7c7;font-weight:bold">Uploaded on 14-9-2016</p>
+                <table style="margin: 0px auto;" class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td style="font-size:14px;background:#ffeaed"><span class="glyphicon glyphicon-thumbs-up" type="button"></span><strong> 8 Likes</strong></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile_Pikachu.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+                        <strong><a href="../profile/profile_friends.html" style="Color:BLACK">Pikachu</a></strong><br>I want to go too TT</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile-squirtle.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+                        <strong><a href="../profile/profile_friends.html" style="Color:BLACK">Squirtle</a></strong><br>Let me join :D</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile_Eevee.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+                        <strong><a href="../profile/profile_friends.html" style="Color:BLACK">Eevee</a></strong><br>Time for an adventure!</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile-Ash.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+                        <strong><a href="../profile/profile_friends.html" style="Color:BLACK">Ash</a></strong><br>Hi</p>
+                      </td>
+                    </tr>
+                    <td>
+                      <form method="post" action="submit_comments.php">
+                        <input type="text" placeholder="Leave your comments here..." class="form-control" id="comments">
+                        <button type="submit" class="btn btn-sm btn-default" style="margin-top:5px">Send</button> 
+                      </form>
                     </td>
                   </tr>
                 </tbody>
+
               </table>
             </div>
-              <div class="text-right">
-                <button type="button" class="btn btn-default"  data-dismiss="modal">Exit</button>
-              </div>            
+            
           </div>
+          <div class="text-right" style="margin-bottom:10px;margin-right:15px">
+            <button type="button" class="btn btn-default"  data-dismiss="modal">Exit</button>
+          </div>            
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 <script>
+  var inputLocalFont = document.getElementById("imgInput");
+  inputLocalFont.addEventListener("change",previewImages,false);
 
-$(document).ready(function(){
-   
-    $(document).on('change', '.btn-file :file', function() {
-    var input = $(this),
-    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [label]);
-  });
+  function previewImages(){
+    var fileList = this.files;
+    
+    var anyWindow = window.URL || window.webkitURL;
 
-  $('.btn-file :file').on('fileselect', function(event, label) {
-        
-    var input = $(this).parents('.input-group').find(':text'),
-        log = label;
-        
-    if( input.length ) {
-        input.val(log);
-    } else {
-        if( log ) alert(log);
+    for(var i = 0; i < fileList.length; i++){
+      var objectUrl = anyWindow.createObjectURL(fileList[i]);
+      $('#preview').append('<img class="modal-thumbnail col-xs-4 col-lg-4" src="' + objectUrl + '" /><input style="float:right;margin-top:5px;margin-bottom:5px"" type="text" id="file' + i + '" class="form-control" placeholder="caption...">');
+      window.URL.revokeObjectURL(fileList[i]);
     }
-      
-    });
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-         var reader = new FileReader();
-            
-         reader.onload = function (e) {
-            $('#img-upload').attr('src', e.target.result);
-            url = e.target.result;
-         }
-            
-         reader.readAsDataURL(input.files[0]);
-    }
+    
+    
+  };     
+
+  function Delete(){
+   var r = confirm("Are you sure you want to delete this album? The photos will be permanently deleted.");
+   if(r == true){
+    window.location.href = "photos.html";
   }
-
-  $("#imgInput").change(function(){
-    readURL(this);
-  });      
-      
-});
-
-
+}
 
 
 </script>

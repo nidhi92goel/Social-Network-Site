@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+  <style>
+
+    body { padding-bottom: 60px; background:WHITE;}
+    
+    .btn-home{
+      background:#FFC1C1;
+      color:#FFFFFF;
+    }
+    .btn-create {
+      background:#FFC1C1;
+      color:#FFFFFF;
+      font-weight:bold;
+    }
+    .summernote .note-editable {
+      text-align: left
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+
+    <h2>Blogs
+      <span>
+        <a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong>  Back to home page</strong></a>
+      </span>
+
+      <span style="float:right;padding-right:40px;">
+        <button type="button" class="btn btn-create" data-toggle="modal" data-target="#BlogModal"><span class="glyphicon glyphicon-plus"></span>  Create a blog</a></button>
+      </span>
+    </div>
+  </h2>
+  <div class="container-fluid" style="padding-bottom:20px;padding-right:55px;padding-top:10px">
+    <span class="col-md-11">
+     <input type="search" type="search" class="form-control input-sm" placeholder="Enter Search Term" style="height:35px">
+   </span>
+   <span class="col-md-1">
+    <a type="button" class="btn btn-home" href="search.html"><strong><span class="glyphicon glyphicon-search"></span> Search</strong></a>
+  </span>
+</div>
+
+<div class="container">
+  <div id = "blog" class="list-group">
+    <a href="blog.html" class="list-group-item">
+      <h4 class="list-group-item-heading">What is life?</h4>
+      <p class="list-group-item-text">Life is beautiful.</p>
+    </a>
+    <a href="blog.html" class="list-group-item">
+      <h4 class="list-group-item-heading">Hello world</h4>
+      <p class="list-group-item-text">Hello!</p>
+    </a>
+    <a href="blog.html" class="list-group-item">
+      <h4 class="list-group-item-heading">What is CSS?</h4>
+      <p class="list-group-item-text">CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc.</p>
+    </a>
+    
+  </div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="BlogModal" tabindex="-1" role="dialog" aria-labelledby="Create Blog" aria-hidden="true">
+  <div class="modal-dialog" style="width:1200px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Create Blog</h5>
+      </div>
+      
+      <div style="margin: 0 auto 0 auto;">
+        <div class="modal-body text-center" style="max-height:500px;overflow-y:auto;">
+          <form id="AlbumForm" method="post" class="form-horizontal" action="submit.php">
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Blog Title</label>
+              <div class="col-xs-9">
+                <input type="text" class="form-control" name="blogTitle"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-2 control-label" style="padding-top:20px;padding-bottom:10px">Blog Contents</label>
+              <div  class="col-xs-9">
+                <textarea id="blogContent"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-2 control-label">Privacy Settings</label>
+              <div class="col-xs-6 col-lg-9">
+                <select class="form-control" id="sel1">
+                  <option>Public</option>
+                  <option>Friends of friends</option>
+                  <option>Friends</option>
+                  <option>Circle 1</option>
+                  <option>Circle 2</option>
+                  <option>Circle 3</option>
+                  <option>Only me</option>
+                </select>
+              </div>
+            </div>  
+          </div> 
+          <div class="text-right" style="margin-bottom: 10px;margin-right: 10px">
+            <button type="submit" class="btn btn-theme" data-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
+          </div>            
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+  $(document).ready(function() {
+
+    $('#blogContent').summernote({
+      height: 300,
+      width:850,
+                              minHeight: null,             // set minimum height of editor
+                              maxHeight: null,             // set maximum height of editor
+                              focus: true                  // set focus to editable area after initializing summernote
+                            });
+  });
+</script>
+</body>

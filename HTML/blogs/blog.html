@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+  <style>
+    body { padding-bottom: 60px; background:WHITE;}
+
+    .btn-home{
+      background:#FFC1C1;
+      color:#FFFFFF;
+    }
+    .btn-create {
+      background:#FFC1C1;
+      color:#FFFFFF;
+      font-weight:bold;
+    }
+    .btn-theme{
+      background:#CD9CB0;
+      color:#FFFFFF;
+      border: 2px solid #ddcfe7;
+
+    }
+    .summernote .note-editable {
+      text-align: left
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <h2><a href="blogs.html" style="color:BLACK">Blogs</a> > What is life
+      <a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong>  Back to home page</strong></a>
+      <div style="float:right;padding-right:40px;">
+        <button type="button" class="btn btn-create" data-toggle="modal" data-target="#BlogModal"><span class="glyphicon glyphicon-pencil"></span>  Edit</a></button>
+        <button type="button" class="btn btn-create" data-toggle="modal" data-target="#SettingModal"><span class="glyphicon glyphicon-cog"></span>  Settings</a></button>
+      </div>
+    </h2>
+    <p style="font-size:15px;color:#c7c7c7;font-weight:bold">Created on 10-9-2016</p>
+    <p style = "font-size:15px;font-weight:bold">Description:blablablabla</p>
+    <div class="container-fluid text-justify col-md-8">
+      <p>Lorem ipsum dolor sit amet, eos insolens incorrupte argumentum at, ceteros omittantur eam no, pro prompta suscipit omittantur in. Te mel veritus complectitur, vim homero audiam ne. Ius eu albucius quaestio ocurreret, ne vel nisl summo nostro. Ius ullum homero ei, timeam malorum et vix.<br>
+
+        At ius sint phaedrum ullamcorper, sonet propriae ullamcorper quo no. Facer fastidii praesent in eum, cu pri veri nostro eloquentiam, mel cu nostro verear animal. Autem lucilius in pri, ius quas posse ei. Latine tractatos honestatis vis ut.<br>
+
+        Ex pri audire similique consetetur. Habeo efficiantur vix at, ei quando tritani prompta nec. Eum velit reprimique no, at rebum consequuntur sit. His choro euismod lobortis et. Vix et suas tota invenire, et quo suas ipsum. Eu vim quidam audiam mandamus, ius ad laoreet percipit, sed tempor tincidunt at. Ad vidisse maiestatis vix.<br>
+
+        Ad his modus fastidii. Eam decore civibus te. Tollit saperet deterruisset eu ius, iusto verterem ex mel, an pri alii hinc dicta. Id erat augue vivendum mea, ex vel solum utamur.<br>
+
+      </p>
+
+    </div>
+    <div class="col-md-4">
+      <table style="margin: 0px auto;" class="table table-hover">
+        <tbody>
+          <tr>
+            <td style="font-size:14px;background:#ffeaed"><span class="glyphicon glyphicon-thumbs-up" type="button"></span>
+              <strong> 8 Likes</strong></a>
+            </td>
+          </tr>
+          <tr>
+            <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile_Pikachu.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+              <strong><a href="../profile/profile.html" style="Color:BLACK">Pikachu</a></strong><br>Agree!</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile-squirtle.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+              <strong><a href="../profile/profile.html" style="Color:BLACK">Squirtle</a></strong><br>:D</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile_Eevee.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+              <strong><a href="../profile/profile.html" style="Color:BLACK">Eevee</a></strong><br>Bookmarked!</p>
+            </td>
+          </tr>
+          <tr>
+            <td><p><a href="../profile/profile_friends.html" style="Color:BLACK"><img src="../profile/assets/Profile-Ash.png" style="height:50px;width:50px; overflow:hidden;object-fit:cover"></a> 
+              <strong><a href="../profile/profile.html" style="Color:BLACK">Oh</a></strong><br>Hi</p>
+            </td>
+          </tr>
+          <td>
+            <form method="post" action="submit_comments.php">
+              <input type="text" placeholder="Leave your comments here..." class="form-control" id="comments">
+              <button type="submit" class="btn btn-sm btn-default" style="margin-top:5px">Send</button> 
+            </form>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  
+  <div class="modal fade" id="BlogModal" tabindex="-1" role="dialog" aria-labelledby="Edit Blog" aria-hidden="true">
+    <div class="modal-dialog" style="width:1200px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title">Edit Blog</h5>
+        </div>
+
+        <div style="margin: 0 auto 0 auto;">
+          <div class="modal-body text-center" style="max-height:500px;overflow-y:auto;">
+            <form id="BlogForm" method="post" class="form-horizontal" action="submit.php">
+              <div class="form-group">
+                <label class="col-xs-2 control-label">Blog Title</label>
+                <div class="col-xs-9">
+                  <input type="text" class="form-control" name="blogTitle" value="What is life"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-xs-2 control-label" style="padding-top:20px;padding-bottom:10px">Blog Contents</label>
+                <div  class="col-xs-9">
+                  <textarea id="blogContent">
+                    Lorem ipsum dolor sit amet, eos insolens incorrupte argumentum at, ceteros omittantur eam no, pro prompta suscipit omittantur in. Te mel veritus complectitur, vim homero audiam ne. Ius eu albucius quaestio ocurreret, ne vel nisl summo nostro. Ius ullum homero ei, timeam malorum et vix.<br>
+
+                    At ius sint phaedrum ullamcorper, sonet propriae ullamcorper quo no. Facer fastidii praesent in eum, cu pri veri nostro eloquentiam, mel cu nostro verear animal. Autem lucilius in pri, ius quas posse ei. Latine tractatos honestatis vis ut.<br>
+
+                    Ex pri audire similique consetetur. Habeo efficiantur vix at, ei quando tritani prompta nec. Eum velit reprimique no, at rebum consequuntur sit. His choro euismod lobortis et. Vix et suas tota invenire, et quo suas ipsum. Eu vim quidam audiam mandamus, ius ad laoreet percipit, sed tempor tincidunt at. Ad vidisse maiestatis vix.<br>
+
+                    Ad his modus fastidii. Eam decore civibus te. Tollit saperet deterruisset eu ius, iusto verterem ex mel, an pri alii hinc dicta. Id erat augue vivendum mea, ex vel solum utamur.<br>
+
+                  </textarea>
+                </div>
+              </div>
+            </div>
+            <div class="text-right" style="margin-bottom: 10px;margin-right: 10px">
+              <button type="submit" class="btn btn-theme" data-dismiss="modal">Submit</button>
+              <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
+            </div>    
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="SettingModal" tabindex="-1" role="dialog" aria-labelledby="Settings" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title">Settings</h5>
+        </div>
+
+        <div style="margin: 0 auto 0 auto;">
+          <div class="modal-body text-center">
+            <form id="AlbumSetting" method="post" class="form-horizontal" action="Album_privacy.php">
+              <div class="form-group" style="padding-top:10px">
+                <label class="col-xs-3 control-label">Privacy Settings</label>
+                <div class="col-xs-6 col-lg-6">
+                  <select class="form-control" id="sel1">
+                    <option>Public</option>
+                    <option>Friends of friends</option>
+                    <option>Friends</option>
+                    <option>Circle 1</option>
+                    <option>Circle 2</option>
+                    <option>Circle 3</option>
+                    <option>Only me</option>
+                  </select>
+                </div>
+                <div class="col-xs-3 col-lg-3" style="padding-right:20px">
+                  <button type="submit" class="btn btn-theme">Save</button>
+                </div>            
+              </div>
+              
+            </form>
+            <button class="btn btn-danger" onClick="Delete()">Delete Blog</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+
+    function Delete(){
+     var r = confirm("Are you sure you want to delete this blog? It will be permanently deleted.");
+     if(r == true){
+      window.location.href = "blogs.html";
+    }
+  }
+  $(document).ready(function() {
+
+    $('#blogContent').summernote({
+      height: 300,
+      width:850,
+      minHeight: null,
+      maxHeight: null,            
+      focus: true               
+    });
+  });
+</script>
+</div>
+</body>

@@ -73,6 +73,9 @@
     color:#FFFFFF;
     font-weight:bold;
 }
+.modal-thumbnail{
+ max-height:300px;width:300px; overflow:hidden;object-fit:contain;align-content:center;
+}
 
   
   </style>
@@ -174,7 +177,7 @@
             </div>
       
         <div style="margin: 0 auto 0 auto;">
-          <div class="modal-body text-center">
+          <div class="modal-body text-center" style="max-height:500px;overflow-y:auto; ">
             <form id="AlbumForm" method="post" class="form-horizontal" action="submit.php">
               <div class="form-group">
                 <label class="col-xs-3 control-label">Album Name</label>
@@ -186,30 +189,56 @@
                 <label class="col-xs-3 control-label">Album Cover</label>
                 <div class="col-xs-5">
                   <input type="file" data-iconName="glyphicon glyphicon-inbox" id="imgInput" accept=".jpg,.gif,.png" readonly>
-                  <img id='img-upload' style="height:250px;width:400px;object-fit:cover;padding-top:10px" />
+                  <img id='img-upload' style="height:200px;width:400px;object-fit:cover;padding-top:10px" />
                 </div>
               </div>
-              <div class="form-group" style="padding-top:10px">
-                <label class="col-xs-3 control-label">Album photos</label>
-                <div class="col-xs-5">
-                  <input type="file" data-iconName="glyphicon glyphicon-inbox" id="albumInput"  accept=".jpg,.gif,.png" readonly multiple>
-                </div>
+              <div class="form-group">
+                <label class="col-xs-3 control-label">Photos to be uploaded</label>
+                <div class="col-xs-9 col-lg-9">
+                  <input type="file" data-iconName="glphicon glyphicon-inbox" id="imgUpload" style="margin-bottom:10px" accept=".jpg,.gif,.png" multiple>
+                  <div id="preview"></div>
+                  </div>
               </div>
               <div class="form-group" style="padding-top:10px">
-                <label class="col-xs-3 control-label">Album privacy</label>
-                <div class="col-xs-5">
-                  
-              <div class="text-right">
+                <label class="col-xs-3 control-label">Privacy Settings</label>
+                <div class="col-xs-6 col-lg-6">
+                  <select class="form-control" id="sel1">
+                    <option>Public</option>
+                    <option>Friends of friends</option>
+                    <option>Friends</option>
+                    <option>Circle 1</option>
+                    <option>Circle 2</option>
+                    <option>Circle 3</option>
+                    <option>Only me</option>
+                  </select>
+                </div>
+               </div>  
+          </div> 
+              <div class="text-right" style="margin-bottom: 10px;margin-right: 10px">
                 <button type="submit" class="btn btn-theme" data-dismiss="modal">Submit</button>
                 <button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
               </div>            
             </form>
           </div>
         </div>
-        </div>
     </div>
 </div>
 <script>
+var inputLocalFont = document.getElementById("imgUpload");
+inputLocalFont.addEventListener("change",previewImages,false);
+  function previewImages(){
+    var fileList = this.files;
+    
+    var anyWindow = window.URL || window.webkitURL;
+
+        for(var i = 0; i < fileList.length; i++){
+          var objectUrl = anyWindow.createObjectURL(fileList[i]);
+          $('#preview').append('<img class="modal-thumbnail col-xs-4 col-lg-4" src="' + objectUrl + '" /><input style="float:right;margin-top:5px;margin-bottom:5px"" type="text" id="file' + i + '" class="form-control" placeholder="caption...">');
+          window.URL.revokeObjectURL(fileList[i]);
+        }
+    
+    
+}; 
 
 $(document).ready(function(){
    
@@ -243,6 +272,7 @@ $(document).ready(function(){
          reader.readAsDataURL(input.files[0]);
     }
   }
+   
 
   $("#imgInput").change(function(){
     readURL(this);
