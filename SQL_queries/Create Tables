@@ -6,7 +6,6 @@ CREATE TABLE accounts(userID int AUTO_INCREMENT NOT NULL, email VARCHAR(320) NOT
 PRIMARY KEY(userID));                                                                        
 
 CREATE TABLE users (userID int(11) NOT NULL, name CHAR(225) NOT NULL, surname CHAR(225), photo BLOB, 
-gender ENUM('Prefere not to say', 'Female', 'Male'),birthday DATE, email VARCHAR(254), PRIMARY KEY(userID), 
-FOREIGN KEY(userID) REFERENCES accounts(userID),
-FOREIGN KEY(email) REFERENCES accounts(email));
+gender ENUM('Prefere not to say', 'Female', 'Male'),birthday DATE, PRIMARY KEY(userID), 
+FOREIGN KEY(userID) REFERENCES accounts(userID));
 
