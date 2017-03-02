@@ -12,7 +12,7 @@ FOREIGN KEY(userID) REFERENCES accounts(userID));
 CREATE TABLE setting_definitions (settingID int AUTO_INCREMENT NOT NULL, definition CHAR(225) NOT NULL,
 PRIMARY KEY(settingID));
 
-CREATE TABLE user_settings (userID int(11) NOT NULL, settingID int (11) NOT NULL, status ENUM('Visible', 'Not Visible) NOT NULL,
+CREATE TABLE user_settings (userID int(11) NOT NULL, settingID int (11) NOT NULL, status ENUM('Visible', 'Not Visible') NOT NULL,
 PRIMARY KEY(userID,SettingID), FOREIGN KEY(userID) REFERENCES accounts(userID), 
 FOREIGN KEY(settingID) REFERENCES setting_definitions(settingID));
 
