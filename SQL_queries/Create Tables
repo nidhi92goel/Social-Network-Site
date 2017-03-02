@@ -6,6 +6,13 @@ CREATE TABLE accounts(userID int AUTO_INCREMENT NOT NULL, email VARCHAR(320) NOT
 PRIMARY KEY(userID));                                                                        
 
 CREATE TABLE users (userID int(11) NOT NULL, name CHAR(225) NOT NULL, surname CHAR(225), photo MEDIUMBLOB, 
-gender ENUM('Prefere not to say', 'Female', 'Male'),birthday DATE, PRIMARY KEY(userID), 
+gender ENUM('Prefer not to say', 'Female', 'Male'),birthday DATE, PRIMARY KEY(userID), 
 FOREIGN KEY(userID) REFERENCES accounts(userID));
+
+CREATE TABLE setting_definitions (settingID int(11) int AUTO_INCREMENT NOT NULL, definition CHAR(225) NOT NULL,
+PRIMARY KEY(settingID));
+
+CREATE TABLE user_settings (userID int(11) NOT NULL, settingID int (11) NOT NULL, status ENUM('Visible', 'Not Visible) NOT NULL,
+PRIMARY KEY(userID,SettingID), FOREIGN KEY(userID) REFERENCES accounts(userID), 
+FOREIGN KEY(settingID) REFERENCES setting_definitions(settingID));
 
