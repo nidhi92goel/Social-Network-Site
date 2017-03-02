@@ -9,7 +9,7 @@ CREATE TABLE users (userID int(11) NOT NULL, name CHAR(225) NOT NULL, surname CH
 gender ENUM('Prefer not to say', 'Female', 'Male'),birthday DATE, PRIMARY KEY(userID), 
 FOREIGN KEY(userID) REFERENCES accounts(userID));
 
-CREATE TABLE setting_definitions (settingID int(11) int AUTO_INCREMENT NOT NULL, definition CHAR(225) NOT NULL,
+CREATE TABLE setting_definitions (settingID int AUTO_INCREMENT NOT NULL, definition CHAR(225) NOT NULL,
 PRIMARY KEY(settingID));
 
 CREATE TABLE user_settings (userID int(11) NOT NULL, settingID int (11) NOT NULL, status ENUM('Visible', 'Not Visible) NOT NULL,
