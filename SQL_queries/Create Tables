@@ -29,5 +29,8 @@ DEFAULT getDate(), description VARCHAR(254), likes_count INT(5) NOT NULL DEFAULT
 PRIMARY KEY(postID), FOREIGN KEY(blogID) REFERENCES blogs(blogID));
 
 CREATE TABLE blog_comments (commentID AUTO_INCREMENT NOT NULL, postID INT(11) NOT NULL, comment TEXT (2000) NOT NULL, date_added DATE NOT NULL
-DEFAULT getDate(), commenterID INT(11) NOT NULL,
-PRIMARY KEY commentID, FOREIGN KEY(postID) REFERENCES blog_comments(postID));
+DEFAULT getDate(), commenterID INT(11) NOT NULL,PRIMARY KEY commentID, FOREIGN KEY(postID) REFERENCES blog_comments(postID));
+
+CREATE TABLE relationships (User_one_ID INT (11) NOT NULL, User_two_ID INT(11) NOT NULL, status ENUM ("Pending", "Accepted","Declined","Blocked") NOT NULL,
+Action_UserID INT(11) NOT NULL, PRIMARY KEY (User_one_ID, User_two_ID), FOREIGN KEY(User_one_ID) REFERENCES users(userID), 
+FOREIGN KEY (User_two_ID) REFERENCES users(userID)); 
