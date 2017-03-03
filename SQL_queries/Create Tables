@@ -19,3 +19,15 @@ FOREIGN KEY(settingID) REFERENCES setting_definitions(settingID));
 CREATE TABLE circles (circleID int AUTO_INCREMENT NOT NULL, name CHAR(254) NOT NULL, photo MEDIUMBLOB,
 owner_userID int(11), date_created DATE NOT NULL, description VARCHAR(254),
 PRIMARY KEY (circleID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+
+CREATE TABLE blogs (blogID int AUTO_INCREMENT NOT NULL, name char(254) NOT NULL, owner_userID int(11) NOT NULL,
+description VARCHAR(254), blogs_count INT(4) NOT NULL, access_rights ENUM ("all", "friends", "friends of friends","only me"),
+PRIMARY KEY (blogID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+
+CREATE TABLE blog_posts (postID int AUTO_INCREMENT NOT NULL, blogID INT(11) NOT NULL, text BLOB NOT NULL, dateAdded DATE NOT NULL 
+DEFAULT getDate(), description VARCHAR(254), likes_count INT(5) NOT NULL DEFAULT '0',
+PRIMARY KEY(postID), FOREIGN KEY(blogID) REFERENCES blogs(blogID));
+
+CREATE TABLE blog_comments (commentID AUTO_INCREMENT NOT NULL, postID INT(11) NOT NULL, comment TEXT (2000) NOT NULL, date_added DATE NOT NULL
+DEFAULT getDate(), commenterID INT(11) NOT NULL,
+PRIMARY KEY commentID, FOREIGN KEY(postID) REFERENCES blog_comments(postID));
