@@ -87,17 +87,33 @@ session_start();
 		echo 'Failed to connect to the MySQL server: '. mysqli_connect_error();
 // Set session variables
 	$_SESSION["userID"] = "1";
-	$query = "SELECT * FROM users where userID = '{$_SESSION['userID']}'";
+	$query = "SELECT a.email,b.* FROM accounts as a INNER JOIN users as b ON a.userID = b.userID where b.userID = '{$_SESSION['userID']}'";
 	$result = mysqli_query($connection,$query)
 	or die('Error making select users query' . mysql_error());
+	$query_privacy_birthday = "SELECT * from user_settings where userID = '{$_SESSION['userID']}' and settingID = '1' ";
+	$privacy_bday = mysqli_query($connection,$query_privacy_birthday)
+	or die ('Error making select users query' . mysql_error());
+	$query_privacy_email = "SELECT * from user_settings where userID = '{$_SESSION['userID']}' and settingID = '2'";
+	$privacy_email = mysqli_query($connection,$query_privacy_email)
+	or die ('Error making select users query' . mysql_error());
+	$query_privacy_gender = "SELECT * from user_settings where userID = '{$_SESSION['userID']}' and settingID = '3'";
+	$privacy_gender = mysqli_query($connection,$query_privacy_gender)
+	or die ('Error making select users query' . mysql_error());
 	$row = mysqli_fetch_assoc($result);
-
+	$row_bday= mysqli_fetch_assoc($privacy_bday);
+	$row_email = mysqli_fetch_assoc($privacy_email);
+	$row_gender = mysqli_fetch_assoc($privacy_gender);
 	?>
 	<div class="container-fluid">
 		<h2>Profile  
 			<a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong> Back to home page</strong></a>
 		</h2>
-		<?php echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="data:image/jpeg;base64, '.base64_encode($row['photo']).'"/>';
+		<?php
+		if($row['imageData'] == NULL){
+			echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="assets/Profile_Default.png"/>';
+		}else{
+			echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="data:image/jpeg;base64, '.base64_encode($row['imageData']).'"/>';
+		}
 		?>
 		<div class='wrapper text-center'>
 			<div class="btn-group">
@@ -159,42 +175,72 @@ session_start();
 									</div>
 									<div class="modal-body">
 										<!-- The form is placed inside the body of modal -->
-										<form id="ProfileForm" method="post" class="form-horizontal text-center">
+										<form id="ProfileForm" method="post" class="form-horizontal text-center" action = "update.php">
 											<div class="form-group">
 												<label class="col-xs-3 control-label">First Name</label>
 												<div class="col-xs-5">
-													<input type="text" class="form-control" name="username" value="<?php echo $row['name'];?>"/>
+													<input type="text" class="form-control" name="name" id="name" value="<?php echo $row['name'];?>"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-xs-3 control-label">Last Name</label>
+												<label class="col-xs-3 control-label">Surname</label>
 												<div class="col-xs-5">
-													<input type="text" class="form-control" name="lastName" value="<?php echo $row['surname'];?>"/>
+													<input type="text" class="form-control" name="surname" id="surname" value="<?php echo $row['surname'];?>"/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-xs-3 control-label" >Birthday</label>
 												<div class="col-xs-5">
-													<input type="date" class="form-control" name="birthday" value="<?php echo date("Y-m-d", strtotime($row['birthday']));?>"/>
+													<input type="date" class="form-control" name="birthday" id="birthday" value="<?php echo date("Y-m-d", strtotime($row['birthday']));?>"/>
+												</div>
+												<label class="col-xs-1 control-label">Privacy</label>
+												<div class="col-xs-3">
+													<select class="form-control" id="sel1" name="privacy_birthday">
+														<option value='public' <?php echo ($row_bday['status']=='public')?'selected="selected"':'' ?>>Public</option>
+														<option value='friends of friends' <?php echo ($row_bday['status']=='friends of friends')?'selected="selected"':'' ?>>Friends of friends</option>
+														<option value='friends' <?php echo ($row_bday['status']=='friends')?'selected="selected"':'' ?>>Friends</option>
+														<option value='friends in circles' <?php echo ($row_bday['status'] == 'friends in circles')?'selected="selected"':'' ?>>Friends in circles</option>
+														<option value='only me' <?php echo ($row_bday['status']=='only me')?'selected="selected"':'' ?>>Only me</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-xs-3 control-label" >Email</label>
 												<div class="col-xs-5">
-													<input type="email" class="form-control" name="email" value="<?php echo $row['email'];?>" disabled/>
+													<input type="email" class="form-control" name="email" id = "email" value="<?php echo $row['email'];?>" disabled/>
+												</div>
+												<label class="col-xs-1 control-label">Privacy</label>
+												<div class="col-xs-3">
+													<select class="form-control" id="sel2" name="privacy_email">
+														<option value="public" <?php echo ($row_email['status']=='public')?'selected="selected"':'' ?>>Public</option>
+														<option value="friends of friends" <?php echo ($row_email['status']=='friends of friends')?'selected="selected"':'' ?>>Friends of friends</option>
+														<option value="friends" <?php echo ($row_email['status']=='friends')?'selected="selected"':'' ?>>Friends</option>
+														<option value="friends in circles" <?php echo ($row_email['status']=='friends in circles')?'selected="selected"':'' ?>>Friends in circles</option>
+														<option value="only me" <?php echo ($row_email['status']=='only me')?'selected="selected"':'' ?>>Only me</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-xs-3 control-label">Gender</label>
 												<div class="col-xs-5">
-													<label class="radio-inline"><input type="radio" name="optradio" <?php echo ($row['gender']=='Female')?'checked':'' ?>>Female</label>
-													<label class="radio-inline"><input type="radio" name="optradio"<?php echo ($row['gender']=='Male')?'checked':'' ?>>Male</label>
-													<label class="radio-inline"><input type="radio" name="optradio" <?php echo ($row['gender']=='Prefer not to say')?'checked':'' ?>>Prefer not to say</label>
+													<label class="radio-inline"><input type="radio" name="gender" id="gender" value="Female" <?php echo ($row['gender']=='Female')?'checked':'' ?>>Female</label>
+													<label class="radio-inline"><input type="radio" id = "gender" name="gender" value = "Male" <?php echo ($row['gender']=='Male')?'checked':'' ?>>Male</label>
+													<label class="radio-inline"><input type="radio" id = "gender" name="gender" value="Prefer not to say" <?php echo ($row['gender']=='Prefer not to say')?'checked':''   ?>>Prefer not to say</label>
+												</div>
+												<label class="col-xs-1 control-label">Privacy</label>
+												<div class="col-xs-3">
+													<select class="form-control" id="sel3" name="privacy_gender">
+														<option value="public" <?php echo ($row_gender['status']=='public')?'selected="selected"':'' ?>>Public</option>
+														<option value='friends of friends' <?php echo ($row_gender['status']=='friends of friends')?'selected="selected"':'' ?>>Friends of friends</option>
+														<option value='friends' <?php echo ($row_gender['status']=='friends')?'selected="selected"':'' ?>>Friends</option>
+														<option value='friends in circles' <?php echo ($row_gender['status']=='friends in circles')?'selected="selected"':'' ?>>Friends in circles</option>
+														<option value='only me' <?php echo ($row_gender['status']=='only me')?'selected="selected"':'' ?>>Only me</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<div class="col-xs-5 col-xs-offset-3">
-													<button type="submit" class="btn btn-primary" onclick="return alert('Changes saved!')">Save profile</button>
+													<button type="submit" name="submit" class="btn btn-primary" onclick="return alert('Changes saved!')">Save profile</button>
 													<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 												</div>
 											</div>
@@ -215,7 +261,7 @@ session_start();
 									<div style="margin: 0 auto 0 auto;">
 										<div class="modal-body text-center">
 											<!-- The form is placed inside the body of modal -->
-											<form id="PasswordForm" method="post" class="form-horizontal">
+											<form id="PasswordForm" method="post" class="form-horizontal" action="password.php">
 												<div class="form-group">
 													<label class="col-xs-3 control-label">Please enter your old password: </label>
 													<div class="col-xs-5">
@@ -236,7 +282,7 @@ session_start();
 												</div>
 												<div class="form-group">
 													<div class="col-xs-5 col-xs-offset-3">
-														<button type="submit" class="btn btn-primary" onclick="return confirm('Do you wish to update your password?');return false;">Submit</button>
+														<button type="submit" class="btn btn-primary" name="submit" onclick="return confirm('Do you wish to update your password?');return false;">Submit</button>
 														<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 													</div>
 												</div>
@@ -257,16 +303,20 @@ session_start();
 									</div>
 									<div style="margin: 0 auto 0 auto;">
 										<div class="modal-body text-center">
+										<form  id = "UploadForm" method="post" enctype="multipart/form-data"  action="save.php">
+										<div class="form-group">
 											<div class="text-center">
-												<form action="save.php">
-													<input type="file" name = "photo" data-iconName="glyphicon glyphicon-inbox" id="imgInput" readonly>
+													<input type="file" name = "imgInput" data-iconName="glyphicon glyphicon-inbox" id="imgInput">
 													<img id='img-upload' class="avatar"/>
 												</div>
+										</div>
+												<div class="form-group">
 												<div class="text-right">
-													<button type="submit" class="btn btn-theme" data-dismiss="modal">Submit</button>
+													<button type="submit" name="submit"  class="btn btn-theme" data-dismiss="modal" onclick="return confirm('Do you wish to update your profile picture?');return false;" >Submit</button>
 													<button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
 												</div>
-											</form>
+												</div>
+										</form>
 
 										</div>
 									</div>
@@ -322,9 +372,13 @@ session_start();
 							function Delete(){
 								var r = confirm("Are you sure you want to delete this photo?");
 								if(r == true){
-									document.getElementById("Profile_img").src="assets/Profile_Default.png";
+									window.location.href = "delete.php";
 								}
 							};
+							function Save(){
+								window.location.href = "save.php";
+							}
+
 
 
 
