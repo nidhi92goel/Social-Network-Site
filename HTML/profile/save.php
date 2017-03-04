@@ -10,19 +10,20 @@ if (mysqli_connect_errno())
 
 if(isset($_POST['submit']))
 {
+	
     $content=file_get_contents($_FILES['imgInput']['tmp_name']);
-	$content=mysql_escape_string($content);
+	$content=mysqli_real_escape_string($connection,$content);
 
 	$query = "UPDATE users SET photo = '{$content}'  where userID = '{$_SESSION['userID']}'";
-	mysqli_query($connection, $query);
 	if (!mysqli_query($connection, $query)) {
         die('Error: ' . mysqli_error($connection));
       }
+    
       else {
-        echo '<script language="javascript">';
-		echo 'window.location.href = "profile.php"';
-		echo '</script>';
-        exit();
+  //       echo '<script language="javascript">';
+		// echo 'window.location.href = "profile.php"';
+		// echo '</script>';
+  //       exit();
       }
 }
 

@@ -39,7 +39,6 @@ if ($new_password !=$new_password_check)
  }
 
 $query = "UPDATE accounts SET password = '$new_password' where userID = '{$_SESSION['userID']}'";
-mysqli_query($connection, $query);
 if (!mysqli_query($connection, $query)) {
 	die('Error: ' . mysqli_error($connection));
 }

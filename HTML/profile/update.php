@@ -21,10 +21,7 @@ $query = "UPDATE users SET name='$name', surname='$lastname', birthday='$birthda
 $query_privacy_bday = "UPDATE user_settings SET status='$privacy_birthday' where userID = '{$_SESSION['userID']}' and settingID = '1'";
 $query_privacy_email = "UPDATE user_settings SET status='$privacy_email' where userID = '{$_SESSION['userID']}' and settingID = '2'";
 $query_privacy_gender = "UPDATE user_settings SET status='$privacy_gender' where userID = '{$_SESSION['userID']}' and settingID = '3'";
-mysqli_query($connection, $query);
-mysqli_query($connection,$query_privacy_bday);
-mysqli_query($connection,$query_privacy_gender);
-mysqli_query($connection,$query_privacy_email);
+
 if (!mysqli_query($connection, $query) || !mysqli_query($connection, $query_privacy_email) || !mysqli_query($connection, $query_privacy_gender) || !mysqli_query($connection, $query_privacy_bday)) {
 	die('Error: ' . mysqli_error($connection));
 }

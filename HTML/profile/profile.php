@@ -109,10 +109,10 @@ session_start();
 			<a href="../home/home.html" type="button" class="btn btn-home"><span class="glyphicon glyphicon-home"></span><strong> Back to home page</strong></a>
 		</h2>
 		<?php
-		if($row['imageData'] == NULL){
+		if($row['photo'] == NULL){
 			echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="assets/Profile_Default.png"/>';
 		}else{
-			echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="data:image/jpeg;base64, '.base64_encode($row['imageData']).'"/>';
+			echo '<img class="thumbnail img-responsive avatar" id = "Profile_img" src="data:image/jpeg;base64, '.base64_encode($row['photo']).'"/>';
 		}
 		?>
 		<div class='wrapper text-center'>
@@ -240,7 +240,7 @@ session_start();
 											</div>
 											<div class="form-group">
 												<div class="col-xs-5 col-xs-offset-3">
-													<button type="submit" name="submit" class="btn btn-primary" onclick="return alert('Changes saved!')">Save profile</button>
+													<button type="submit" name="submit" class="btn btn-theme" onclick="return alert('Changes saved!')">Save profile</button>
 													<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 												</div>
 											</div>
@@ -282,7 +282,7 @@ session_start();
 												</div>
 												<div class="form-group">
 													<div class="col-xs-5 col-xs-offset-3">
-														<button type="submit" class="btn btn-primary" name="submit" onclick="return confirm('Do you wish to update your password?');return false;">Submit</button>
+														<button type="submit" class="btn btn-theme" name="submit" onclick="return confirm('Do you wish to update your password?');return false;">Submit</button>
 														<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 													</div>
 												</div>
@@ -293,7 +293,7 @@ session_start();
 							</div>
 						</div>
 						<div class="modal fade" id="UploadModal" tabindex="-1" role="dialog" aria-labelledby="Change Photo" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
+							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -303,26 +303,31 @@ session_start();
 									</div>
 									<div style="margin: 0 auto 0 auto;">
 										<div class="modal-body text-center">
-										<form  id = "UploadForm" method="post" enctype="multipart/form-data"  action="save.php">
-										<div class="form-group">
-											<div class="text-center">
-													<input type="file" name = "imgInput" data-iconName="glyphicon glyphicon-inbox" id="imgInput">
+											<!-- The form is placed inside the body of modal -->
+											<form id="PhotoForm" method="post" class="form-horizontal" enctype="multipart/form-data" action="save.php">
+												<div class="form-group">
+													<label class="col-xs-3 control-label">Upload a photo: </label>
+													<div class="col-xs-5">
+														<input type="file"  name="imgInput" id = "imgInput" accept=".jpg,.gif,.png"/>
+
+													</div>
+												</div>
+												<div class = "form-group">
 													<img id='img-upload' class="avatar"/>
 												</div>
-										</div>
 												<div class="form-group">
-												<div class="text-right">
-													<button type="submit" name="submit"  class="btn btn-theme" data-dismiss="modal" onclick="return confirm('Do you wish to update your profile picture?');return false;" >Submit</button>
-													<button type="button" class="btn btn-default"  data-dismiss="modal">Cancel</button>
+													<div class="col-xs-5 col-xs-offset-3">
+														<button type="submit" class="btn btn-theme" name="submit" onclick="return confirm('Do you wish to update your profile picture?');return false;">Submit</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+													</div>
 												</div>
-												</div>
-										</form>
-
+											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
 						<script>
 							var url = "";
 							var popupElement='<div class="btn-group-vertical"> <button type="button" class="btn btn-default" data-toggle="modal" data-target="#UploadModal"><span class="glyphicon glyphicon-upload" ></span> Change Photo</button> <button type="button" class="btn btn-danger" onclick="Delete()"><span class="glyphicon glyphicon-remove"></span> Remove Photo</button></div>';
