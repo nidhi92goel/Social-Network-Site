@@ -29,4 +29,17 @@ CREATE TABLE blog_posts (postID int AUTO_INCREMENT NOT NULL, blogID INT(11) NOT 
 PRIMARY KEY(postID), FOREIGN KEY(blogID) REFERENCES blogs(blogID));
 
 CREATE TABLE blog_comments (commentID int AUTO_INCREMENT NOT NULL, postID INT(11) NOT NULL, content TEXT(2000) NOT NULL, date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, commenterID INT(11) NOT NULL,
-PRIMARY KEY commentID, FOREIGN KEY(postID) REFERENCES blog_posts(postID));
+PRIMARY KEY (commentID), FOREIGN KEY(postID) REFERENCES blog_posts(postID));
+
+CREATE TABLE albums (albumID int AUTO_INCREMENT NOT NULL, name CHAR(254) NOT NULL, owner_userID INT(11) NOT NULL, date_created DATETIME 
+NOT NULL DEFAULT CURRENT_TIMESTAMP, description VARCHAR(254), photo_count INT(4) NOT NULL, access_rights ENUM("all",
+"friends", "friend of friends", "friends in circles", "only me") NOT NULL DEFAULT "friends", cover_photo LONGBLOB,
+PRIMARY KEY (albumID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+
+CREATE TABLE photos (photoID INT AUTO_INCREMENT NOT NULL, albumID INT(11) NOT NULL, image LONGBLOB NOT NULL, date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+caption VARCHAR(254) NULL, likes_count INT(5) NOT NULL DEFAULT '0',
+PRIMARY KEY (photoID), FOREIGN KEY(albumID) REFERENCES album(albumID));
+
+CREATE TABLE photo_comments (commentID int AUTO_INCREMENT NOT NULL, photoID int(11) NOT NULL, comment TEXT(2000) NOT NULL, date_added DATETIME NOT NULL 
+DEFAULT CURRENT_TIMESTAMP, commenterID INT(11) NOT NULL,
+PRIMARY KEY (commentID), FOREIGN KEY(photoID) REFERENCES photos(photoID), FOREIGN KEY(commenterID) REFERENCES users(userID));
