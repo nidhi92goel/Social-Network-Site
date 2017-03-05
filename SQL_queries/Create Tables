@@ -7,39 +7,42 @@ PRIMARY KEY(userID));
 
 CREATE TABLE users (userID int(11) NOT NULL, name CHAR(225) NOT NULL, surname CHAR(225), photo MEDIUMBLOB, 
 gender ENUM('Prefer not to say', 'Female', 'Male'),birthday DATE, PRIMARY KEY(userID), 
-FOREIGN KEY(userID) REFERENCES accounts(userID));
+FOREIGN KEY(userID) REFERENCES accounts(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE setting_definitions (settingID int AUTO_INCREMENT NOT NULL, definition CHAR(225) NOT NULL,
 PRIMARY KEY(settingID));
 
 CREATE TABLE user_settings (userID int(11) NOT NULL, settingID int (11) NOT NULL, status ENUM('Visible', 'Not Visible') NOT NULL,
 PRIMARY KEY(userID,SettingID), FOREIGN KEY(userID) REFERENCES users(userID), 
-FOREIGN KEY(settingID) REFERENCES setting_definitions(settingID));
+FOREIGN KEY(settingID) REFERENCES setting_definitions(settingID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE circles (circleID int AUTO_INCREMENT NOT NULL, name CHAR(254) NOT NULL, photo MEDIUMBLOB,
 owner_userID int(11), date_created DATE NOT NULL, description VARCHAR(254),
-PRIMARY KEY (circleID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+PRIMARY KEY (circleID), FOREIGN KEY(owner_userID) REFERENCES users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE blogs (blogID int AUTO_INCREMENT NOT NULL, name char(255) NOT NULL, owner_userID int(11) NOT NULL,
 description VARCHAR(254), blogs_count INT(4) NOT NULL, access_rights ENUM ("all", "friends", "friends of friends","only me"),
-PRIMARY KEY (blogID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+PRIMARY KEY (blogID), FOREIGN KEY(owner_userID) REFERENCES users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
 CREATE TABLE blog_posts (postID int AUTO_INCREMENT NOT NULL, blogID INT(11) NOT NULL, content BLOB NOT NULL, dateAdded DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, description VARCHAR(254), likes_count INT(5) NOT NULL DEFAULT 0,
-PRIMARY KEY(postID), FOREIGN KEY(blogID) REFERENCES blogs(blogID));
+PRIMARY KEY(postID), FOREIGN KEY(blogID) REFERENCES blogs(blogID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE blog_comments (commentID int AUTO_INCREMENT NOT NULL, postID INT(11) NOT NULL, content TEXT(2000) NOT NULL, date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, commenterID INT(11) NOT NULL,
-PRIMARY KEY (commentID), FOREIGN KEY(postID) REFERENCES blog_posts(postID));
+PRIMARY KEY (commentID), FOREIGN KEY(postID) REFERENCES blog_posts(postID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE albums (albumID int AUTO_INCREMENT NOT NULL, name CHAR(254) NOT NULL, owner_userID INT(11) NOT NULL, date_created DATETIME 
 NOT NULL DEFAULT CURRENT_TIMESTAMP, description VARCHAR(254), photo_count INT(4) NOT NULL, access_rights ENUM("all",
 "friends", "friend of friends", "friends in circles", "only me") NOT NULL DEFAULT "friends", cover_photo LONGBLOB,
-PRIMARY KEY (albumID), FOREIGN KEY(owner_userID) REFERENCES users(userID));
+PRIMARY KEY (albumID), FOREIGN KEY(owner_userID) REFERENCES users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE photos (photoID INT AUTO_INCREMENT NOT NULL, albumID INT(11) NOT NULL, image LONGBLOB NOT NULL, date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 caption VARCHAR(254) NULL, likes_count INT(5) NOT NULL DEFAULT '0',
-PRIMARY KEY (photoID), FOREIGN KEY(albumID) REFERENCES album(albumID));
+PRIMARY KEY (photoID), FOREIGN KEY(albumID) REFERENCES album(albumID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE photo_comments (commentID int AUTO_INCREMENT NOT NULL, photoID int(11) NOT NULL, comment TEXT(2000) NOT NULL, date_added DATETIME NOT NULL 
 DEFAULT CURRENT_TIMESTAMP, commenterID INT(11) NOT NULL,
-PRIMARY KEY (commentID), FOREIGN KEY(photoID) REFERENCES photos(photoID), FOREIGN KEY(commenterID) REFERENCES users(userID));
+PRIMARY KEY (commentID), FOREIGN KEY(photoID) REFERENCES photos(photoID) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY(commenterID) REFERENCES users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE like_photo (likeID int AUTO_INCREMENT NOT NULL, photoID int(11) NOT NULL, userID INT(11) NOT NULL, PRIMARY KEY (likeID), 
+FOREIGN KEY(photoID) REFERENCES photos(photoID) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY(userID) REFERENCES users(userID) ON DELETE CASCADE ON UPDATE CASCADE);
